@@ -28,7 +28,6 @@ public class ProductService extends AbstractService {
     @Inject
     private final Storage<Product> storage;
 
-
     private final int pageSize = 3;
 
     @GET
