@@ -2,9 +2,9 @@ package com.api;
 
 import com.api.model.Product;
 import com.storage.InMemoryStorage;
-import com.storage.Storage;
 import com.google.inject.PrivateModule;
 import com.google.inject.Provides;
+import com.storage.Storage;
 
 public class _ProductApiModule extends PrivateModule {
 

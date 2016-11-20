@@ -10,6 +10,7 @@ repositories {
 
 dependencies {
     compile project(':storage')
+    compile project(':model')
 
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'ch.qos.logback:logback-core:1.1.7'

@@ -19,6 +19,8 @@ include 'services:webservice'
 rootProject.name = 'api-parent'
 include ':api-jersey'
 include ':storage'
+include ':model'
 
 project(':api-jersey').projectDir = "$rootDir/api-jersey" as File
 project(':storage').projectDir = "$rootDir/storage" as File
+project(':model').projectDir = "$rootDir/model" as File

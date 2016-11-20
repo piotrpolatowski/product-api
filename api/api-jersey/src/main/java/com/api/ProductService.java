@@ -1,11 +1,11 @@
 package com.api;
 
+import com.api.model.Product;
 import com.codahale.metrics.MetricRegistry;
 import com.metrics.MetricTypes;
-import com.api.model.Product;
-import com.storage.Storage;
 import com.google.common.util.concurrent.AbstractService;
 import com.google.inject.Inject;
+import com.storage.Storage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
