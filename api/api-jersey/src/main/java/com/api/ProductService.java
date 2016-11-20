@@ -2,6 +2,7 @@ package com.api;
 
 import com.api.model.Product;
 import com.codahale.metrics.MetricRegistry;
+import com.google.inject.name.Named;
 import com.metrics.MetricTypes;
 import com.google.common.util.concurrent.AbstractService;
 import com.google.inject.Inject;
@@ -22,13 +23,11 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class ProductService extends AbstractService {
 
-    @Inject
     private final MetricRegistry metricRegistry;
-
-    @Inject
     private final Storage<Product> storage;
 
-    private final int pageSize = 3;
+    @Inject @Named("api.pageSize")
+    Integer pageSize;
 
     @GET
     @Path("list")

@@ -19,13 +19,14 @@ public class RedisProductStorage implements Storage<Product> {
     }
 
     private static final String PRICE_FIELD = "price";
-    private static final String SORTED_SET_NAME = "product_catalog";
+    private static final String SORTED_CATALOG_INDEX = "product_keys";
+    private static final String PRODUCT_CATALOG = "catalog";
 
     private final RedisCommands<String, String> commands;
 
     @Override
     public void add(Product product) {
-        String key = String.format("product:%s", product.getId());
+        String key = String.format("%s:%s", PRODUCT_CATALOG, product.getId());
         commands.hsetnx(key, TITLE_FIELD, product.getTitle());
         commands.hsetnx(key, PRICE_FIELD, String.valueOf(product.getPrice().getCent()));
 
@@ -34,7 +35,7 @@ public class RedisProductStorage implements Storage<Product> {
 
     @Override
     public List<Product> get(int offset, int limit) {
-        List<String> productIds = commands.zrange(SORTED_SET_NAME, offset, offset + limit);
+        List<String> productIds = commands.zrange(SORTED_CATALOG_INDEX, offset, offset + limit);
 
         return productIds.stream()
                 .map(Long::new)

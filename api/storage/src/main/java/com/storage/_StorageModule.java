@@ -14,7 +14,7 @@ public class _StorageModule extends PrivateModule {
     protected void configure() {
         install(new _RedisModule());
 
-        bind(STORAGE_TYPE).to(new TypeLiteral<InMemoryStorage<Product>>() {}).asEagerSingleton();
+        bind(STORAGE_TYPE).to(RedisProductStorage.class).asEagerSingleton();
         expose(STORAGE_TYPE);
     }
 
