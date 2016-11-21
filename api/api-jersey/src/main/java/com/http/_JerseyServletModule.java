@@ -9,7 +9,7 @@ public class _JerseyServletModule extends JerseyServletModule {
 
     @Override
     protected void configureServlets() {
-        bind(JacksonJsonProvider.class).in(Singleton.class);
+        bind(JacksonJsonProvider.class).toInstance(new JacksonJsonProvider());
         serve("/*").with(GuiceContainer.class);
     }
 

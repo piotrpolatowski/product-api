@@ -6,13 +6,19 @@ import lombok.Data;
 public class Product {
     private long id;
     private String title;
-    private Price price;
+    private Long price;
+    private Currency currency;
 
     public static final Product create(long id, String title, long cent) {
+        return create(id, title, cent, Currency.USD);
+    }
+
+    public static final Product create(long id, String title, long cent, Currency currency) {
         Product product = new Product();
         product.setId(id);
         product.setTitle(title);
-        product.setPrice(Price.of(cent));
+        product.setPrice(cent);
+        product.setCurrency(currency);
         return product;
     }
 }
