@@ -9,11 +9,11 @@ public class Product {
     private Long price;
     private Currency currency;
 
-    public static final Product create(long id, String title, long cent) {
+    public static Product create(long id, String title, long cent) {
         return create(id, title, cent, Currency.USD);
     }
 
-    public static final Product create(long id, String title, long cent, Currency currency) {
+    public static Product create(long id, String title, long cent, Currency currency) {
         Product product = new Product();
         product.setId(id);
         product.setTitle(title);

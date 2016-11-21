@@ -36,7 +36,7 @@ public class RedisProductStorage implements Storage<Product> {
         commands.hsetnx(key, ID_FIELD, String.valueOf(product.getId()));
         commands.hsetnx(key, CURRENCY_FIELD, String.valueOf(product.getCurrency()));
 
-        commands.zadd("product_catalog", 1.0, String.valueOf(product.getId()));
+        commands.zadd(SORTED_CATALOG_INDEX, 1.0, String.valueOf(product.getId()));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class RedisProductStorage implements Storage<Product> {
                     Long price = Long.parseLong(prod.get(PRICE_FIELD));
                     Long id = Long.parseLong(prod.get(ID_FIELD));
                     Currency currency = Currency.valueOf(prod.get(CURRENCY_FIELD));
-                    return Product.create(id, title, price);
+                    return Product.create(id, title, price, currency);
                 })
                 .collect(Collectors.toList());
     }
