@@ -3,9 +3,9 @@
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Development](#development)
-- [Interaction](#interaction)
-- [Debugging](#debugging)
-- [Further Info](#further-info)
+- [Testing](#testing)
+- [Performance](#performance)
+- [Further features](#further-features)
 
 ## Prerequisites
 
@@ -55,3 +55,52 @@ For local development you might need:
 * local redis
 * docker redis, that can be run by `docker-compose up redis`. Also change `application.properties` to `api.redis.uri=redis://localhost:6379`
 * use other storege i.e. `InMemoryStorage`
+
+### Data sample
+
+By default redis stores the data in `{project_path}/redis/data/dump.rdb` which can be a symbolic link pointing to a data file.
+To switch the data just create a link i.e. `ln -s {project_path}/redis/data/big.rdb {project_path}/redis/data/dump.rdb`
+The project has two sample data files:
+* init.rdb - 5 products
+* big.rdb - with ~129k randomly generated products
+ 
+
+## Testing
+
+Tools for load testing.
+
+* Download stable version of [`Gatling`](http://gatling.io/#/resources/download).
+E.g.: `gatling-charts-highcharts-bundle-2.2.2-bundle.zip`
+
+* Extract it to your programs folder
+E.g.: `/opt`
+
+* Go to the `bin` Gatling directory
+E.g.: `cd /opt/gatling-charts-highcharts-bundle-2.2.2-bundle/bin`
+
+* Create a symbolic link for Gatling jobs in seo project
+E.g.: `ln -s ~/product-api/load-tests-gatling/user-files .`
+
+* Run Gatling
+E.g.: `. gatling.sh`
+* Select simulator from list by the number, and press _Enter_
+
+
+* Check out the results in `results` folder
+E.g.: `/opt/gatling-charts-highcharts-bundle-2.2.2-bundle/results`
+
+## Performance
+
+### Memory
+
+For a sample with ~129k items the memory consumption:
+used_memory_human:33.18M
+used_memory_rss_human:36.94M
+used_memory_peak_human:33.18M
+
+### Requests per second
+
+
+
+## Further Features
+
