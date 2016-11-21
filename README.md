@@ -130,6 +130,11 @@ Results present throughput of 200 requests per second.
 
 Choosen redis to provide quick access serve requests quickly. Hoewver to avoid any data loss we could add secondary storage i.e. database.
 
+### Guice + Jersey
+
+Pure DI and Rest frameworks without other unnecessary stuff.
+Similar features could be done with Spring or Jersey2 + HK2 + Grizzly.
+
 ## Further Changes
 
 * Extending API
@@ -139,3 +144,4 @@ Choosen redis to provide quick access serve requests quickly. Hoewver to avoid a
 * Add smoke tests
 * Implement transactional `add`
 * Compare performance with asynchronous processing
+* Push metrics to time time-series storage and visualize in Graphite
