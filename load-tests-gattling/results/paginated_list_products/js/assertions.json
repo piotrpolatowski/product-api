@@ -1,0 +1,10 @@
+{
+  "simulation": "computerdatabase.PaginatedListProductsSimulation",
+  "simulationId": "paginatedlistproductssimulation",
+  "start": 1479743573540,
+  "description": "",
+  "scenarios": ["Scenario Name"],
+  "assertions": [
+
+  ]
+}

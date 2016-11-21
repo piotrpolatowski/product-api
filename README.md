@@ -2,10 +2,12 @@
 
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
+- [API](#api)
 - [Development](#development)
 - [Testing](#testing)
 - [Performance](#performance)
-- [Further features](#further-features)
+- [Explanations](#explanations)
+- [Further Changes](#further-changes)
 
 ## Prerequisites
 
@@ -39,10 +41,31 @@
 * Finally run containers
   * Run `docker-compose up`
   * Health Check:
-    * http://localhost:8088/products/list returns 3 results
-    * http://localhost:8088/metrics prints request metrics
-    * http://localhost:8088/metrics/jvm prints general JVM metrics
-    * http://localhost:8088/health returns healthy status
+    * [products/list](http://localhost:8088/products/list) returns 3 results
+    * [metrics](http://localhost:8088/metrics) prints request metrics
+    * [metrics-jvm](http://localhost:8088/metrics/jvm) prints general JVM metrics
+    * [health](http://localhost:8088/health) returns healthy status
+
+## API
+
+* list products
+GET [http://localhost:8088/products/list?page={page}](http://localhost:8088/products/list?page=0)
+
+* add product
+POST [http://localhost:8088/products/add](http://localhost:8088/products/add)
+
+Content-Type: application/json
+
+Body:
+```
+{
+  "id": 6,
+  "title": "X-COM 2",
+  "price": 6000, 
+  "currency": "USD"
+}
+```
+
 
 ## Development
 
@@ -61,8 +84,8 @@ For local development you might need:
 By default redis stores the data in `{project_path}/redis/data/dump.rdb` which can be a symbolic link pointing to a data file.
 To switch the data just create a link i.e. `ln -s {project_path}/redis/data/big.rdb {project_path}/redis/data/dump.rdb`
 The project has two sample data files:
-* init.rdb - 5 products
-* big.rdb - with ~129k randomly generated products
+* `init.rdb` - 5 products
+* `big.rdb` - with ~129k randomly generated products
  
 
 ## Testing
@@ -70,26 +93,19 @@ The project has two sample data files:
 Tools for load testing.
 
 * Download stable version of [`Gatling`](http://gatling.io/#/resources/download).
-E.g.: `gatling-charts-highcharts-bundle-2.2.2-bundle.zip`
-
 * Extract it to your programs folder
-E.g.: `/opt`
-
 * Go to the `bin` Gatling directory
-E.g.: `cd /opt/gatling-charts-highcharts-bundle-2.2.2-bundle/bin`
-
+  E.g.: `cd /opt/gatling-charts-highcharts-bundle-2.2.2-bundle/bin`
 * Create a symbolic link for Gatling jobs in seo project
-E.g.: `ln -s ~/product-api/load-tests-gatling/user-files .`
-
+  E.g.: `ln -s ~/product-api/load-tests-gatling/user-files .`
 * Run Gatling
 E.g.: `. gatling.sh`
 * Select simulator from list by the number, and press _Enter_
-
-
 * Check out the results in `results` folder
-E.g.: `/opt/gatling-charts-highcharts-bundle-2.2.2-bundle/results`
 
 ## Performance
+
+Load tests done on a single machine against docker containers.
 
 ### Memory
 
@@ -98,9 +114,22 @@ used_memory_human:33.18M
 used_memory_rss_human:36.94M
 used_memory_peak_human:33.18M
 
+Assuming the data grows linearly, 10 milion of products would take ~3-4GB.
+
 ### Requests per second
 
+Checkout example load test [results](https://github.com/piotrpolatowski/product-api/tree/master/load-tests-gattling/results/simulations).
+Results present throughput of 200 requests per second.
 
+## Explanations
 
-## Further Features
+### Storage
 
+Choosen redis to provide quick access serve requests quickly. Hoewver to avoid any data loss we could add secondary storage i.e. database.
+
+## Further Changes
+
+* Extending API
+  * Removing elements
+  * Searching elements by title
+* Dockerize gattling
