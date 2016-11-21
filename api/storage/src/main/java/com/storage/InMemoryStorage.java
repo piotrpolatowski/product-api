@@ -15,6 +15,16 @@ public class InMemoryStorage<T> implements Storage<T>{
 
     @Override
     public List<T> get(int offset, int limit) {
-        return list.subList(offset, offset + limit + 1);
+        int from = offset;
+        int to = Math.min(offset + limit, list.size());
+        if(from > list.size()) {
+            return list.subList(0,0);
+        }
+
+        return list.subList(from, to);
+    }
+
+    public List<T> getAll() {
+        return list;
     }
 }

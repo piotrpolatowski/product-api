@@ -12,7 +12,7 @@ import java.util.List;
 public class PaginatedProductCatalog {
 
     @Inject @Named("api.pageSize")
-    Integer pageSize;
+    private final Integer pageSize;
 
     private final Storage<Product> storage;
 
