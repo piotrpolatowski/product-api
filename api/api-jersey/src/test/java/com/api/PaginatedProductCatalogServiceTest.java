@@ -4,10 +4,10 @@ import com.codahale.metrics.MetricRegistry;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ProductServiceTest {
+public class PaginatedProductCatalogServiceTest {
 
     MetricRegistry registry;
-    ProductService service;
+    ProductCatalogService service;
 
     @Before
     public void setUp() throws Exception {

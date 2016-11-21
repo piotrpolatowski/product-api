@@ -9,7 +9,7 @@ public class _ProductApiModule extends PrivateModule {
     protected void configure() {
 
         install(new _StorageModule());
-        bind(ProductService.class);
-        expose(ProductService.class);
+        bind(ProductCatalogService.class);
+        expose(ProductCatalogService.class);
     }
 }

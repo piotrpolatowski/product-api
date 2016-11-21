@@ -4,6 +4,7 @@ import lombok.Getter;
 
 public enum MetricTypes {
     API_PRODUCT_LIST_REQUESTS,
+    API_PRODUCT_ADD_REQUESTS,
     API_PRODUCT_ERRORS;
 
     @Getter

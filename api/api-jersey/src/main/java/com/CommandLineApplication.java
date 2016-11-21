@@ -1,6 +1,6 @@
 package com;
 
-import com.api.ProductService;
+import com.api.ProductCatalogService;
 import com.http.HttpService;
 import com.service.ServiceUtil;
 import com.google.inject.Guice;
@@ -15,7 +15,7 @@ public final class CommandLineApplication {
         Injector injector = Guice.createInjector(new ApiModule());
 
         ServiceUtil.createServices(injector,
-                Key.get(ProductService.class),
+                Key.get(ProductCatalogService.class),
                 Key.get(HttpService.class))
                 .startAsync().awaitStopped();
     }

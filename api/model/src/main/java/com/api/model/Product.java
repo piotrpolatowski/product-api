@@ -4,11 +4,15 @@ import lombok.Data;
 
 @Data
 public class Product {
-    private final long id;
-    private final String title;
-    private final Price price;
+    private long id;
+    private String title;
+    private Price price;
 
     public static final Product create(long id, String title, long cent) {
-        return new Product(id, title, Price.of(cent));
+        Product product = new Product();
+        product.setId(id);
+        product.setTitle(title);
+        product.setPrice(Price.of(cent));
+        return product;
     }
 }

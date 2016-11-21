@@ -30,12 +30,12 @@ public class RedisProductStorage implements Storage<Product> {
         commands.hsetnx(key, TITLE_FIELD, product.getTitle());
         commands.hsetnx(key, PRICE_FIELD, String.valueOf(product.getPrice().getCent()));
 
-        commands.zadd("product_catalog", 1, product.getId());
+        commands.zadd("product_catalog", 1.0, String.valueOf(product.getId()));
     }
 
     @Override
     public List<Product> get(int offset, int limit) {
-        List<String> productIds = commands.zrange(SORTED_CATALOG_INDEX, offset, offset + limit);
+        List<String> productIds = commands.zrange(SORTED_CATALOG_INDEX, offset, offset + limit - 1);
 
         return productIds.stream()
                 .map(Long::new)
