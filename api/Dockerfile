@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     gradle \
  && rm -rf /var/lib/apt/lists/*
 
-ADD . /code
+COPY . /code
 WORKDIR /code
-CMD /bin/bash service.sh block tests/docker/example
+RUN bash build.sh
+CMD bash service.sh block

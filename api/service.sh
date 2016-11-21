@@ -3,10 +3,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Keep the pwd in mind!
 # Example: RUN="java -jar $DIR/target/magic.jar"
-RUN="java -jar $DIR/api-jersey/build/libs/api-jersey-shadow.jar $DATA_FILE"
+RUN="java -jar $DIR/api-jersey/build/libs/api-jersey-shadow.jar"
 NAME="product-api"
-
-DATA_FILE=$2
 
 PIDFILE=/tmp/$NAME.pid
 LOGFILE=/tmp/$NAME.log
@@ -16,7 +14,7 @@ start() {
     echo 'Service already running' >&2
     return 1
   fi
-  local CMD="$RUN $DATA_FILE &> \"$LOGFILE\" & echo \$!"
+  local CMD="$RUN &> \"$LOGFILE\" & echo \$!"
   sh -c "$CMD" > "$PIDFILE"
 }
 
@@ -41,5 +39,5 @@ case "$1" in
     sleep infinity
     ;;
   *)
-    echo "Usage: $0 {start|stop|block} DATA_FILE"
+    echo "Usage: $0 {start|stop|block}"
 esac

@@ -14,3 +14,5 @@ services:
      - ./api:/code
     depends_on:
      - redis
+    links:
+     - redis

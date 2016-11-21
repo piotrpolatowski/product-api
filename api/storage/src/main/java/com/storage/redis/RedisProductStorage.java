@@ -3,7 +3,6 @@ package com.storage.redis;
 import com.api.model.Currency;
 import com.api.model.Product;
 import com.google.inject.Inject;
-import com.lambdaworks.redis.RedisClient;
 import com.lambdaworks.redis.api.sync.RedisCommands;
 import com.storage.Storage;
 
@@ -23,10 +22,9 @@ public class RedisProductStorage implements Storage<Product> {
     private final RedisCommands<String, String> commands;
 
     @Inject
-    public RedisProductStorage(RedisClient client) {
-        this.commands = client.connect().sync();
+    public RedisProductStorage(RedisClientProvider provider) {
+        this.commands = provider.get().connect().sync();
     }
-
 
     @Override
     public void add(Product product) {

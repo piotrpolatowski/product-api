@@ -3,8 +3,9 @@ package com.storage;
 import com.api.model.Product;
 import com.google.inject.PrivateModule;
 import com.google.inject.TypeLiteral;
+import com.lambdaworks.redis.RedisClient;
+import com.storage.redis.RedisClientProvider;
 import com.storage.redis.RedisProductStorage;
-import com.storage.redis._RedisModule;
 
 public class _StorageModule extends PrivateModule {
 
@@ -12,8 +13,7 @@ public class _StorageModule extends PrivateModule {
 
     @Override
     protected void configure() {
-        install(new _RedisModule());
-
+        bind(RedisClient.class).toProvider(RedisClientProvider.class);
         bind(STORAGE_TYPE).to(RedisProductStorage.class).asEagerSingleton();
         expose(STORAGE_TYPE);
     }
