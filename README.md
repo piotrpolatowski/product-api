@@ -135,5 +135,7 @@ Choosen redis to provide quick access serve requests quickly. Hoewver to avoid a
 * Extending API
   * Removing elements
   * Searching elements by title
-* Dockerize gattling
+* Dockerize Gattling
 * Add smoke tests
+* Implement transactional `add`
+* Compare performance with asynchronous processing
