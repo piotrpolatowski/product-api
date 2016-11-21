@@ -7,6 +7,7 @@ import com.codahale.metrics.jvm.BufferPoolMetricSet;
 import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
 import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import com.codahale.metrics.jvm.ThreadStatesGaugeSet;
+import com.google.inject.Inject;
 import lombok.SneakyThrows;
 
 import javax.inject.Singleton;
@@ -23,22 +24,32 @@ import java.util.Map;
 public class MetricsResource {
 
     private final MetricRegistry registry;
+    private final MetricRegistry jvmRegistry;
 
-    @com.google.inject.Inject
+    @Inject
     public MetricsResource(MetricRegistry registry) {
         this.registry = registry;
+        this.jvmRegistry = new MetricRegistry();
 
-        registerAll("gc", new GarbageCollectorMetricSet(), registry);
-        registerAll("buffers", new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()), registry);
-        registerAll("memory", new MemoryUsageGaugeSet(), registry);
-        registerAll("threads", new ThreadStatesGaugeSet(), registry);
+        registerAll("gc", new GarbageCollectorMetricSet(), jvmRegistry);
+        registerAll("buffers", new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()), jvmRegistry);
+        registerAll("memory", new MemoryUsageGaugeSet(), jvmRegistry);
+        registerAll("threads", new ThreadStatesGaugeSet(), jvmRegistry);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @SneakyThrows
-    public Response getHealth() {
+    public Response getMetrics() {
         return Response.ok(registry.getMetrics()).build();
+    }
+
+    @GET
+    @Path("jvm")
+    @Produces(MediaType.APPLICATION_JSON)
+    @SneakyThrows
+    public Response getJvmMetrics() {
+        return Response.ok(jvmRegistry.getMetrics()).build();
     }
 
 
