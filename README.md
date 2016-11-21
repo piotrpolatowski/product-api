@@ -121,6 +121,7 @@ Assuming the data grows linearly, 10 milion of products would take ~3-4GB.
 Checkout example load test results by opening in browser:
 * `{project_path}/load-tests-gattling/results/add_product/add_products.html`
 * `{project_path}/load-tests-gattling/results/paginated_list_products/index.html`
+
 Results present throughput of 200 requests per second.
 
 ## Explanations
