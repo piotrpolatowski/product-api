@@ -118,7 +118,7 @@ Assuming the data grows linearly, 10 milion of products would take ~3-4GB.
 
 ### Requests per second
 
-Checkout example load test [results](https://github.com/piotrpolatowski/product-api/tree/master/load-tests-gattling/results/simulations).
+Checkout example load test [results](https://github.com/piotrpolatowski/product-api/tree/master/load-tests-gattling/results).
 Results present throughput of 200 requests per second.
 
 ## Explanations
