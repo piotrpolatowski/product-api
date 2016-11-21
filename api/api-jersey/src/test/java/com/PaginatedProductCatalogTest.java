@@ -28,7 +28,7 @@ public class PaginatedProductCatalogTest {
     @Before
     public void setUp() throws Exception {
         storage = new InMemoryStorage<>();
-        catalog = new PaginatedProductCatalog(PAGE_SIZE, storage);
+        catalog = new PaginatedProductCatalog(storage, PAGE_SIZE);
     }
 
     @Test

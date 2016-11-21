@@ -7,5 +7,4 @@ RUN apt-get update && apt-get install -y \
 
 COPY . /code
 WORKDIR /code
-RUN bash build.sh
 CMD bash service.sh block
