@@ -136,3 +136,4 @@ Choosen redis to provide quick access serve requests quickly. Hoewver to avoid a
   * Removing elements
   * Searching elements by title
 * Dockerize gattling
+* Add smoke tests
