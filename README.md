@@ -145,3 +145,4 @@ Similar features could be done with Spring or Jersey2 + HK2 + Grizzly.
 * Implement transactional `add`
 * Compare performance with asynchronous processing
 * Push metrics to time time-series storage and visualize in Graphite
+* Extract dependency versions to variables (build.gradle)
